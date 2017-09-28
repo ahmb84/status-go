@@ -7,6 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	gethcommon "github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/status-im/status-go/geth/node"
 	"github.com/status-im/status-go/geth/params"
@@ -136,7 +137,7 @@ func (s *RPCTestSuite) TestRPCSendTransaction() {
 			"to":       "` + TestConfig.Account2.Address + `",
 			"value":    "0x200",
 			"nonce":    "0x100",
-			"data":     "Will-power",
+			"data":     "` + gethcommon.StringToHash("Will-power").Hex() + `",
 			"gasPrice": "0x4a817c800",
 			"gasLimit": "0x5208",
 			"chainId":  3391

@@ -18,7 +18,7 @@ func (s *JailTestSuite) TestJailTimeoutFailure() {
 	// Attempt to run a timeout string against a Cell.
 	_, err = cell.Run(`
 		var timerCounts = 0;
- 		setTimeout(function(n){		
+ 		setTimeout(function(n){
  			if (Date.now() - n < 50) {
  				throw new Error("Timed out");
  			}
@@ -48,7 +48,7 @@ func (s *JailTestSuite) TestJailTimeout() {
 	// Attempt to run a timeout string against a Cell.
 	_, err = cell.Run(`
 		var timerCounts = 0;
- 		setTimeout(function(n){		
+ 		setTimeout(function(n){
  			if (Date.now() - n < 50) {
  				throw new Error("Timed out");
  			}

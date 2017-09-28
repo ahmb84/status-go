@@ -4,6 +4,8 @@
 GOBIN = build/bin
 GO ?= latest
 
+UNIT_TEST_PACKAGES := $(shell go list ./...  | grep -v /vendor/ | grep -v /integration/ | grep -v /cmd/)
+
 statusgo:
 	build/env.sh go build -i -o $(GOBIN)/statusd -v $(shell build/testnet-flags.sh) ./cmd/statusd
 	@echo "\nCompilation done.\nRun \"build/bin/statusd help\" to view available commands."
@@ -116,6 +118,12 @@ mock-install:
 
 mock: mock-install
 	mockgen -source=geth/common/types.go -destination=geth/common/types_mock.go -package=common
+
+test-unit:
+	go test $(TEST_PACKAGES)
+
+test-integration:
+	go test ./integration/...
 
 test:
 	@build/env.sh echo "mode: set" > coverage-all.out
