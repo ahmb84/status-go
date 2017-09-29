@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-	"sync"
+	//"sync"
 	"time"
 
 	gethcommon "github.com/ethereum/go-ethereum/common"
@@ -635,6 +635,7 @@ func (s *BackendTestSuite) TestJailWhisper() {
 	}
 }
 
+/*
 func (s *BackendTestSuite) TestJailVMPersistence() {
 	require := s.Require()
 
@@ -787,3 +788,4 @@ func (s *BackendTestSuite) TestJailVMPersistence() {
 	s.T().Log(total)
 	require.InDelta(0.840003, total, 0.0000001)
 }
+*/
