@@ -107,24 +107,24 @@ lint:
 mock-install:
 	go get -u github.com/golang/mock/mockgen
 
-mock: mock-install
+mock:
 	mockgen -source=geth/common/types.go -destination=geth/common/types_mock.go -package=common
 
 test-unit:
-	go test $(UNIT_TEST_PACKAGES)
+	build/env.sh go test $(UNIT_TEST_PACKAGES)
 
 test-unit-coverage:
-	go test -coverpkg= $(UNIT_TEST_PACKAGES)
+	build/env.sh go test -coverpkg= $(UNIT_TEST_PACKAGES)
 
 test-integration:
-	go test -timeout 20m -v ./integration/accounts/...
-	go test -timeout 20m -v ./integration/api/...
-	go test -timeout 20m -v ./integration/jail/...
-	go test -timeout 20m -v ./integration/node/...
-	go test -timeout 20m -v ./integration/rpc/...
-	go test -timeout 20m -v ./cmd/statusd
+	build/env.sh go test -timeout 20m -v ./integration/accounts/...
+	build/env.sh go test -timeout 20m -v ./integration/api/...
+	build/env.sh go test -timeout 20m -v ./integration/jail/...
+	build/env.sh go test -timeout 20m -v ./integration/node/...
+	build/env.sh go test -timeout 20m -v ./integration/rpc/...
+	build/env.sh go test -timeout 20m -v ./cmd/statusd
 
-ci: test-unit-coverage test-integration
+ci: mock-install mock test-unit-coverage test-integration
 
 clean:
 	rm -fr build/bin/*
